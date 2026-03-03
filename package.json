@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.24.0",
+    "@ttskch/prettier-plugin-tailwindcss-anywhere": "^0.1.2",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  }
+}
