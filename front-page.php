@@ -21,9 +21,9 @@
                 <h1 class="text-center font-bold text-white"><?php echo $heading; ?> <br> <span class="text-brand-500"><?php echo $highlight_text; ?></span></h1>
                 <p class="max-w-2xl text-center text-white"><?php echo esc_html($subheading); ?></p>
                 <div class="mt-2 flex items-center gap-2">
-                  <a href="<?php echo esc_url($cta_1['url']); ?>" class="btn-primary px-8 py-4 text-lg hover:shadow-brand-500/30 w-fit text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"><?php echo esc_html($cta_1['title']); ?></a>
+                  <a href="<?php echo esc_url($cta_1['url']); ?>" class="btn-primary hover:shadow-brand-500/30 w-fit px-8 py-4 text-center text-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"><?php echo esc_html($cta_1['title']); ?></a>
                   <?php if ($cta_2): ?>
-                    <a href="<?php echo esc_url($cta_2['url']); ?>" class="btn-secondary px-8 py-4 text-lg w-fit text-center"><?php echo esc_html($cta_2['title']); ?></a>
+                    <a href="<?php echo esc_url($cta_2['url']); ?>" class="btn-secondary w-fit px-8 py-4 text-center text-lg"><?php echo esc_html($cta_2['title']); ?></a>
                   <?php endif; ?>
                 </div>
               </div>
@@ -305,9 +305,9 @@
   $testimonials = $section["review_card"] ?? [];
   ?>
   <div class="custom-container">
-    <h2 class="font-extrabold tracking-tight text-center text-slate-900"><?php echo highlight_text($heading); ?></h2>
+    <h2 class="text-center font-extrabold tracking-tight text-slate-900"><?php echo highlight_text($heading); ?></h2>
     <?php if (!empty($description)): ?>
-      <p class="mt-6 text-lg leading-relaxed text-center text-slate-600"><?php echo esc_html($description); ?></p>
+      <p class="mt-6 text-center text-lg leading-relaxed text-slate-600"><?php echo esc_html($description); ?></p>
     <?php endif; ?>
     <?php if (!empty($testimonials)): ?>
       <div class="splide fade-up relative mt-16" id="reviews-slider">
@@ -396,7 +396,7 @@
           $answer = $faq["answer"] ?? "";
         ?>
           <div class="fade-up faq-item rounded-xl border border-slate-200 bg-white">
-            <button class="faq-trigger cursor-pointer flex w-full items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <button class="faq-trigger flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left" aria-expanded="false">
               <span class="pr-4 font-semibold text-slate-900"><?php echo esc_html($question); ?></span>
               <svg class="faq-chevron h-5 w-5 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -414,7 +414,7 @@
   </div>
 </section>
 <!-- CTA -->
-<section class="section-spacing bg-slate-950 relative">
+<section class="section-spacing relative bg-slate-950">
   <?php
   $section = get_field("cta") ?: [];
   $heading = $section["cta_heading"] ?? "";
@@ -423,19 +423,19 @@
   ?>
   <div class="custom-container">
     <div class="absolute inset-0">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/6 rounded-full blur-3xl "></div>
+      <div class="bg-brand-500/6 absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"></div>
     </div>
-    <div class="relative max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 text-center fade-up">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+    <div class="fade-up relative mx-auto max-w-3xl px-5 text-center sm:px-6 lg:px-8">
+      <h2 class="text-3xl leading-tight font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
         <?php echo highlight_text($heading); ?>
       </h2>
-      <p class="mt-6 text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
         <?php echo esc_html($description); ?>
       </p>
       <div class="mt-10">
-        <a href="<?php echo esc_url($cta['url']); ?>" class="inline-flex items-center gap-2 px-10 py-5 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-xl text-lg transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5">
+        <a href="<?php echo esc_url($cta['url']); ?>" class="bg-brand-500 hover:bg-brand-600 shadow-brand-500/25 hover:shadow-brand-500/30 inline-flex items-center gap-2 rounded-xl px-10 py-5 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl">
           <?php echo esc_html($cta["title"]); ?>
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
