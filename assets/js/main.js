@@ -238,6 +238,54 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     },
   });
+
+  // Product gallery slider with thumbnail sync
+  var galleryEl = document.querySelector("#product-gallery-slider");
+  if (galleryEl) {
+    var gallerySlider = new Splide(galleryEl, {
+      type: "fade",
+      perPage: 1,
+      arrows: true,
+      pagination: true,
+      rewind: true,
+    });
+    gallerySlider.mount();
+
+    var thumbs = document.querySelectorAll(".product-thumb");
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        gallerySlider.go(parseInt(thumb.dataset.index, 10));
+      });
+    });
+
+    gallerySlider.on("moved", function (newIndex) {
+      thumbs.forEach(function (t, i) {
+        if (i === newIndex) {
+          t.classList.add("border-brand-500");
+          t.classList.remove("border-transparent", "opacity-60");
+        } else {
+          t.classList.remove("border-brand-500");
+          t.classList.add("border-transparent", "opacity-60");
+        }
+      });
+    });
+  }
+
+  // Sticky mobile CTA for single product
+  var stickyBar = document.getElementById("sticky-product-bar");
+  if (stickyBar) {
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (window.scrollY > 600) {
+          stickyBar.classList.remove("translate-y-full");
+        } else {
+          stickyBar.classList.add("translate-y-full");
+        }
+      },
+      { passive: true },
+    );
+  }
 });
 
 // Observer for fade-up animation

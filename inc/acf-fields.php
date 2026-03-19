@@ -670,8 +670,17 @@ function optimumlift_register_acf_fields()
     // -------------------------------------------------------------------------
     acf_add_local_field_group([
         'key'    => 'group_optimumlift_product',
-        'title'  => 'Product Details',
+        'title'  => 'Product Page Builder',
         'fields' => [
+
+            // -- Hero / General --
+            [
+                'key'        => 'field_product_hero',
+                'label'      => 'Hero Settings',
+                'name'       => '',
+                'type'       => 'tab',
+                'placement'  => 'top',
+            ],
             [
                 'key'        => 'field_duration',
                 'label'      => 'Duration',
@@ -698,16 +707,334 @@ function optimumlift_register_acf_fields()
                     ],
                 ],
             ],
+            [
+                'key'          => 'field_product_badge',
+                'label'        => 'Badge',
+                'name'         => 'product_badge',
+                'type'         => 'text',
+                'instructions' => 'e.g. "Best Seller", "New". Leave empty to hide.',
+            ],
+            [
+                'key'   => 'field_product_long_description',
+                'label' => 'Hero Description',
+                'name'  => 'product_long_description',
+                'type'  => 'textarea',
+                'rows'  => 4,
+                'instructions' => 'Longer description shown in the hero. Falls back to the WooCommerce short description if empty.',
+            ],
+            [
+                'key'          => 'field_days_per_week',
+                'label'        => 'Days per Week',
+                'name'         => 'days_per_week',
+                'type'         => 'text',
+                'instructions' => 'e.g. "4 days/week".',
+            ],
+            [
+                'key'          => 'field_product_guarantee',
+                'label'        => 'Guarantee Label',
+                'name'         => 'product_guarantee',
+                'type'         => 'text',
+                'instructions' => 'e.g. "60-day guarantee".',
+            ],
+
+            // -- Achievement Stats --
+            [
+                'key'       => 'field_product_stats_tab',
+                'label'     => 'Achievement Stats',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ],
+            [
+                'key'          => 'field_product_stats_heading',
+                'label'        => 'Stats Section Heading',
+                'name'         => 'product_stats_heading',
+                'type'         => 'text',
+                'instructions' => 'Wrap text in ** to highlight.',
+                'default_value' => "What You'll Achieve",
+            ],
+            [
+                'key'   => 'field_product_stats_description',
+                'label' => 'Stats Section Description',
+                'name'  => 'product_stats_description',
+                'type'  => 'textarea',
+                'rows'  => 2,
+            ],
+            [
+                'key'          => 'field_achievement_stats',
+                'label'        => 'Stats',
+                'name'         => 'achievement_stats',
+                'type'         => 'repeater',
+                'button_label' => 'Add Stat',
+                'sub_fields'   => [
+                    [
+                        'key'   => 'field_ach_stat_value',
+                        'label' => 'Value',
+                        'name'  => 'stat_value',
+                        'type'  => 'text',
+                        'instructions' => 'e.g. "+3.2 kg", "97%".',
+                    ],
+                    [
+                        'key'   => 'field_ach_stat_label',
+                        'label' => 'Label',
+                        'name'  => 'stat_label',
+                        'type'  => 'text',
+                    ],
+                ],
+            ],
+
+            // -- What's Inside --
+            [
+                'key'       => 'field_product_features_tab',
+                'label'     => "What's Inside",
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ],
+            [
+                'key'          => 'field_whats_inside_heading',
+                'label'        => 'Section Heading',
+                'name'         => 'whats_inside_heading',
+                'type'         => 'text',
+                'instructions' => 'Wrap text in ** to highlight.',
+                'default_value' => 'Everything Inside the Program',
+            ],
+            [
+                'key'   => 'field_whats_inside_description',
+                'label' => 'Section Description',
+                'name'  => 'whats_inside_description',
+                'type'  => 'textarea',
+                'rows'  => 2,
+            ],
+            [
+                'key'          => 'field_whats_inside_features',
+                'label'        => 'Features',
+                'name'         => 'whats_inside_features',
+                'type'         => 'repeater',
+                'button_label' => 'Add Feature',
+                'sub_fields'   => [
+                    [
+                        'key'           => 'field_feature_icon',
+                        'label'         => 'Icon',
+                        'name'          => 'feature_icon',
+                        'type'          => 'image',
+                        'return_format' => 'url',
+                        'preview_size'  => 'thumbnail',
+                    ],
+                    [
+                        'key'   => 'field_feature_title',
+                        'label' => 'Title',
+                        'name'  => 'feature_title',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'key'   => 'field_feature_description',
+                        'label' => 'Description',
+                        'name'  => 'feature_description',
+                        'type'  => 'textarea',
+                        'rows'  => 3,
+                    ],
+                ],
+            ],
+
+            // -- Who It's For --
+            [
+                'key'       => 'field_product_whoisitfor_tab',
+                'label'     => "Who It's For",
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ],
+            [
+                'key'          => 'field_wif_heading',
+                'label'        => 'Section Heading',
+                'name'         => 'who_its_for_heading',
+                'type'         => 'text',
+                'instructions' => 'Wrap text in ** to highlight.',
+                'default_value' => 'Is This Program Right for You?',
+            ],
+            [
+                'key'   => 'field_wif_description',
+                'label' => 'Section Description',
+                'name'  => 'who_its_for_description',
+                'type'  => 'textarea',
+                'rows'  => 3,
+            ],
+            [
+                'key'          => 'field_for_you_items',
+                'label'        => 'This Is For You If',
+                'name'         => 'for_you_items',
+                'type'         => 'repeater',
+                'button_label' => 'Add Item',
+                'sub_fields'   => [
+                    [
+                        'key'   => 'field_for_you_text',
+                        'label' => 'Text',
+                        'name'  => 'item_text',
+                        'type'  => 'text',
+                    ],
+                ],
+            ],
+            [
+                'key'          => 'field_not_for_you_items',
+                'label'        => 'This Is NOT For You If',
+                'name'         => 'not_for_you_items',
+                'type'         => 'repeater',
+                'button_label' => 'Add Item',
+                'sub_fields'   => [
+                    [
+                        'key'   => 'field_not_for_you_text',
+                        'label' => 'Text',
+                        'name'  => 'item_text',
+                        'type'  => 'text',
+                    ],
+                ],
+            ],
+
+            // -- Testimonials --
+            [
+                'key'       => 'field_product_testimonials_tab',
+                'label'     => 'Testimonials',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ],
+            [
+                'key'          => 'field_product_testimonials_heading',
+                'label'        => 'Section Heading',
+                'name'         => 'product_testimonials_heading',
+                'type'         => 'text',
+                'instructions' => 'Wrap text in ** to highlight.',
+                'default_value' => 'What Members Are Saying',
+            ],
+            [
+                'key'          => 'field_product_testimonials',
+                'label'        => 'Testimonials',
+                'name'         => 'product_testimonials',
+                'type'         => 'repeater',
+                'button_label' => 'Add Testimonial',
+                'sub_fields'   => [
+                    [
+                        'key'           => 'field_pt_rating',
+                        'label'         => 'Rating (1–5)',
+                        'name'          => 'review_rating',
+                        'type'          => 'number',
+                        'min'           => 1,
+                        'max'           => 5,
+                        'step'          => 1,
+                        'default_value' => 5,
+                    ],
+                    [
+                        'key'   => 'field_pt_text',
+                        'label' => 'Review Text',
+                        'name'  => 'review_text',
+                        'type'  => 'textarea',
+                        'rows'  => 4,
+                    ],
+                    [
+                        'key'   => 'field_pt_author',
+                        'label' => 'Author',
+                        'name'  => 'reviewer_name',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'key'   => 'field_pt_info',
+                        'label' => 'Author Info',
+                        'name'  => 'reviewer_info',
+                        'type'  => 'text',
+                        'instructions' => 'e.g. "28 · Manchester, UK".',
+                    ],
+                ],
+            ],
+
+            // -- Pricing CTA --
+            [
+                'key'       => 'field_product_pricing_tab',
+                'label'     => 'Pricing CTA',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ],
+            [
+                'key'          => 'field_pricing_heading',
+                'label'        => 'Section Heading',
+                'name'         => 'pricing_heading',
+                'type'         => 'text',
+                'instructions' => 'Wrap text in ** to highlight.',
+            ],
+            [
+                'key'   => 'field_pricing_description',
+                'label' => 'Section Description',
+                'name'  => 'pricing_description',
+                'type'  => 'text',
+                'instructions' => 'e.g. "One-time payment. Lifetime access. Instant download.".',
+            ],
+            [
+                'key'          => 'field_pricing_features',
+                'label'        => 'Feature List',
+                'name'         => 'pricing_features',
+                'type'         => 'repeater',
+                'button_label' => 'Add Feature',
+                'instructions' => 'Bullet points displayed inside the pricing card.',
+                'sub_fields'   => [
+                    [
+                        'key'   => 'field_pricing_feature_text',
+                        'label' => 'Feature',
+                        'name'  => 'feature_text',
+                        'type'  => 'text',
+                    ],
+                ],
+            ],
+
+            // -- FAQ --
+            [
+                'key'       => 'field_product_faq_tab',
+                'label'     => 'FAQ',
+                'name'      => '',
+                'type'      => 'tab',
+                'placement' => 'top',
+            ],
+            [
+                'key'          => 'field_product_faq_heading',
+                'label'        => 'Section Heading',
+                'name'         => 'product_faq_heading',
+                'type'         => 'text',
+                'instructions' => 'Wrap text in ** to highlight.',
+                'default_value' => 'Questions About This Program',
+            ],
+            [
+                'key'          => 'field_product_faqs',
+                'label'        => 'FAQ Items',
+                'name'         => 'product_faqs',
+                'type'         => 'repeater',
+                'button_label' => 'Add FAQ',
+                'sub_fields'   => [
+                    [
+                        'key'   => 'field_product_faq_q',
+                        'label' => 'Question',
+                        'name'  => 'question',
+                        'type'  => 'text',
+                    ],
+                    [
+                        'key'   => 'field_product_faq_a',
+                        'label' => 'Answer',
+                        'name'  => 'answer',
+                        'type'  => 'textarea',
+                        'rows'  => 4,
+                    ],
+                ],
+            ],
         ],
         'location' => [
             [
                 ['param' => 'post_type', 'operator' => '==', 'value' => 'product'],
             ],
         ],
-        'menu_order'      => 0,
-        'position'        => 'normal',
-        'style'           => 'default',
-        'label_placement' => 'top',
-        'active'          => true,
+        'menu_order'            => 0,
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+        'active'                => true,
     ]);
 }
